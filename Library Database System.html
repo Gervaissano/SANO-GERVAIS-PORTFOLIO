@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Advanced Library Database System</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <style>
+        /* CSS Styles from the previous version - keeping the same styles */
         :root {
             --primary: #4361ee;
             --primary-dark: #3a56d4;
@@ -35,7 +36,7 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Roboto, Oxygen, Ubuntu, sans-serif;
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             color: var(--dark);
             line-height: 1.6;
@@ -141,6 +142,7 @@
             border-radius: var(--radius-sm);
             transition: var(--transition);
             font-weight: 500;
+            cursor: pointer;
         }
 
         .nav-item:hover {
@@ -184,6 +186,7 @@
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
             transition: var(--transition);
+            cursor: pointer;
         }
 
         .portfolio-link:hover {
@@ -218,8 +221,8 @@
             font-weight: 700;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             background-clip: text;
-            color: transparent;
         }
 
         .header-controls {
@@ -373,10 +376,6 @@
             font-size: 4.5rem;
             font-weight: 900;
             line-height: 1;
-            background: linear-gradient(90deg, #fff, #f0f0f0);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
             text-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
@@ -825,121 +824,35 @@
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="bg-animation" id="bgAnimation"></div>
-    
-    <!-- Mobile Menu Toggle -->
-    <button class="mobile-menu-toggle" id="mobileMenuToggle">
-        <i class="fas fa-bars"></i>
-    </button>
-    
-    <div class="app-container">
-        <!-- Sidebar Navigation -->
-        <nav class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <div class="logo">
-                    <i class="fas fa-book"></i>
-                </div>
-                <div class="logo-text">
-                    <h2>LibraBase Pro</h2>
-                    <span>Database System</span>
-                </div>
-            </div>
-            
-            <div class="nav-menu">
-                <a href="#" class="nav-item active" data-tab="dashboard">
-                    <i class="fas fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
-                </a>
-                <a href="#" class="nav-item" data-tab="search">
-                    <i class="fas fa-search"></i>
-                    <span>Book Search</span>
-                </a>
-                <a href="#" class="nav-item" data-tab="analytics">
-                    <i class="fas fa-chart-line"></i>
-                    <span>Analytics</span>
-                </a>
-                <a href="#" class="nav-item" data-tab="catalog">
-                    <i class="fas fa-book-open"></i>
-                    <span>Catalog Management</span>
-                </a>
-                <a href="#" class="nav-item" data-tab="performance">
-                    <i class="fas fa-rocket"></i>
-                    <span>Performance</span>
-                </a>
-                <a href="#" class="nav-item" data-tab="team">
-                    <i class="fas fa-users"></i>
-                    <span>Team</span>
-                </a>
-                <a href="#" class="nav-item" data-tab="settings">
-                    <i class="fas fa-cog"></i>
-                    <span>Settings</span>
-                </a>
-            </div>
-            
-            <!-- Portfolio Navigation Section -->
-            <div class="portfolio-section">
-                <h3>My Portfolio</h3>
-                <a href="#" class="portfolio-link">
-                    <i class="fas fa-user"></i>
-                    <span>About Me</span>
-                </a>
-                <a href="#" class="portfolio-link">
-                    <i class="fas fa-briefcase"></i>
-                    <span>Projects</span>
-                </a>
-                <a href="#" class="portfolio-link">
-                    <i class="fas fa-envelope"></i>
-                    <span>Contact</span>
-                </a>
-                <a href="#" class="portfolio-link">
-                    <i class="fas fa-file-download"></i>
-                    <span>Resume</span>
-                </a>
-            </div>
-            
-            <div class="portfolio-section">
-                <h3>System Status</h3>
-                <div class="performance-stats">
-                    <div class="stat-item">
-                        <div class="stat-value">99.8%</div>
-                        <div class="stat-label">Uptime</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">40%</div>
-                        <div class="stat-label">Faster</div>
-                    </div>
-                </div>
-            </div>
-        </nav>
-        
-        <!-- Main Content -->
-        <main class="main-content" id="mainContent">
-            <!-- Header -->
-            <header class="header">
-                <h1 id="pageTitle">Library Dashboard</h1>
-                <div class="header-controls">
-                    <div class="user-profile">
-                        <div class="user-avatar">AJ</div>
-                        <div>
-                            <div style="font-weight: 600;">Alex Johnson</div>
-                            <div style="font-size: 0.85rem; opacity: 0.7;">Project Lead</div>
-                        </div>
-                        <i class="fas fa-chevron-down" style="margin-left: 10px;"></i>
-                    </div>
-                </div>
-            </header>
-            
-            <!-- Tab Content -->
-            <div id="tabContent"></div>
-        </main>
-    </div>
-    
-    <script type="text/babel">
-        const { useState, useEffect, useMemo, useCallback, memo } = React;
+    <div id="root"></div>
 
-        // Performance optimized data structures
-        const LibraryDatabase = {
+    <script type="text/babel">
+        // Create animated background particles
+        const createParticles = () => {
+            const bgAnimation = document.createElement('div');
+            bgAnimation.className = 'bg-animation';
+            bgAnimation.id = 'bgAnimation';
+            document.body.prepend(bgAnimation);
+            
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 20 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.opacity = Math.random() * 0.3 + 0.1;
+                particle.style.animationDuration = `${Math.random() * 20 + 10}s`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                bgAnimation.appendChild(particle);
+            }
+        };
+
+        // Library Database
+        const libraryData = {
             books: [
                 { id: 1, title: "The Great Gatsby", author: "F. Scott Fitzgerald", year: 1925, category: "Fiction", status: "available", isbn: "9780743273565", pages: 218, rating: 4.2, coverColor: "#FF6B6B" },
                 { id: 2, title: "To Kill a Mockingbird", author: "Harper Lee", year: 1960, category: "Fiction", status: "available", isbn: "9780061120084", pages: 324, rating: 4.3, coverColor: "#4ECDC4" },
@@ -975,132 +888,29 @@
                 oldSearchTime: 1.2,
                 queriesPerDay: 28500,
                 storageSaved: "2.3TB"
-            },
-            
-            performanceData: {
-                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                oldSystem: [1.2, 1.18, 1.22, 1.25, 1.19, 1.21, 1.23, 1.24, 1.2, 1.22, 1.21, 1.23],
-                newSystem: [1.2, 1.1, 0.95, 0.85, 0.78, 0.74, 0.72, 0.71, 0.7, 0.71, 0.72, 0.7]
             }
         };
-
-        // Create animated background particles
-        const createParticles = () => {
-            const bgAnimation = document.getElementById('bgAnimation');
-            if (!bgAnimation) return;
-            
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                
-                const size = Math.random() * 20 + 5;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-                particle.style.opacity = Math.random() * 0.3 + 0.1;
-                particle.style.animationDuration = `${Math.random() * 20 + 10}s`;
-                particle.style.animationDelay = `${Math.random() * 5}s`;
-                
-                bgAnimation.appendChild(particle);
-            }
-        };
-
-        // Performance optimized search function
-        const searchBooks = (query, filters = {}) => {
-            if (!query.trim() && Object.keys(filters).length === 0) {
-                return LibraryDatabase.books;
-            }
-            
-            const queryLower = query.toLowerCase();
-            const { category, status, year } = filters;
-            
-            return LibraryDatabase.books.filter(book => {
-                // Text search
-                const matchesQuery = !query || 
-                    book.title.toLowerCase().includes(queryLower) ||
-                    book.author.toLowerCase().includes(queryLower) ||
-                    book.category.toLowerCase().includes(queryLower);
-                
-                // Filter matching
-                const matchesCategory = !category || book.category === category;
-                const matchesStatus = !status || book.status === status;
-                const matchesYear = !year || book.year >= year;
-                
-                return matchesQuery && matchesCategory && matchesStatus && matchesYear;
-            });
-        };
-
-        // Memoized BookCard component for performance
-        const BookCard = memo(({ book }) => {
-            const firstLetter = book.title.charAt(0);
-            
-            return (
-                <div className="book-card fade-in-up">
-                    <div className="book-cover" style={{ background: book.coverColor }}>
-                        <span>{firstLetter}</span>
-                    </div>
-                    <div className="book-info">
-                        <h3 className="book-title">{book.title}</h3>
-                        <div className="book-author">{book.author} • {book.year}</div>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
-                            <span className="book-category">{book.category}</span>
-                            <div className={`book-status status-${book.status === 'available' ? 'available' : 'checked-out'}`}>
-                                {book.status === 'available' ? 'Available' : 'Checked Out'}
-                            </div>
-                        </div>
-                        <div className="book-meta">
-                            <div>
-                                <div style={{ fontSize: '0.85rem', color: '#6c757d' }}>ISBN: {book.isbn}</div>
-                                <div style={{ fontSize: '0.85rem', color: '#6c757d', marginTop: '5px' }}>
-                                    <i className="fas fa-star" style={{ color: '#FFD700' }}></i> {book.rating} • {book.pages} pages
-                                </div>
-                            </div>
-                            <button style={{
-                                padding: '8px 15px',
-                                background: 'linear-gradient(135deg, #4361ee, #7209b7)',
-                                color: 'white',
-                                border: 'none',
-                                borderRadius: '20px',
-                                cursor: 'pointer',
-                                fontSize: '0.85rem',
-                                fontWeight: '600'
-                            }}>
-                                {book.status === 'available' ? 'Borrow' : 'Reserve'}
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            );
-        });
 
         // Dashboard Component
-        const Dashboard = () => {
-            const [recentActivity, setRecentActivity] = useState([
-                { id: 1, user: "John Doe", action: "checked out", book: "The Great Gatsby", time: "2 hours ago" },
-                { id: 2, user: "Jane Smith", action: "returned", book: "1984", time: "4 hours ago" },
-                { id: 3, user: "Bob Johnson", action: "reserved", book: "The Hobbit", time: "1 day ago" },
-                { id: 4, user: "Alice Brown", action: "checked out", book: "Pride and Prejudice", time: "2 days ago" }
-            ]);
-
+        function Dashboard() {
             return (
                 <div>
                     {/* Efficiency Metric */}
                     <div className="efficiency-metric fade-in-up">
                         <div className="metric-content">
                             <h2>Database Optimization Achievement</h2>
-                            <div className="metric-value">{LibraryDatabase.stats.searchEfficiency}%</div>
+                            <div className="metric-value">{libraryData.stats.searchEfficiency}%</div>
                             <div className="metric-detail">
                                 <div className="metric-detail-item">
-                                    <div className="metric-detail-value">{LibraryDatabase.stats.avgSearchTime}s</div>
+                                    <div className="metric-detail-value">{libraryData.stats.avgSearchTime}s</div>
                                     <div className="metric-detail-label">Avg Search Time</div>
                                 </div>
                                 <div className="metric-detail-item">
-                                    <div className="metric-detail-value">{LibraryDatabase.stats.oldSearchTime}s</div>
+                                    <div className="metric-detail-value">{libraryData.stats.oldSearchTime}s</div>
                                     <div className="metric-detail-label">Previous System</div>
                                 </div>
                                 <div className="metric-detail-item">
-                                    <div className="metric-detail-value">{LibraryDatabase.stats.queriesPerDay.toLocaleString()}</div>
+                                    <div className="metric-detail-value">{libraryData.stats.queriesPerDay.toLocaleString()}</div>
                                     <div className="metric-detail-label">Queries/Day</div>
                                 </div>
                             </div>
@@ -1119,7 +929,7 @@
                                     <i className="fas fa-book"></i>
                                 </div>
                             </div>
-                            <div className="card-value">{LibraryDatabase.stats.totalBooks.toLocaleString()}</div>
+                            <div className="card-value">{libraryData.stats.totalBooks.toLocaleString()}</div>
                             <div className="card-trend trend-up">
                                 <i className="fas fa-arrow-up"></i>
                                 <span>12% from last year</span>
@@ -1133,7 +943,7 @@
                                     <i className="fas fa-check-circle"></i>
                                 </div>
                             </div>
-                            <div className="card-value">{LibraryDatabase.stats.availableBooks.toLocaleString()}</div>
+                            <div className="card-value">{libraryData.stats.availableBooks.toLocaleString()}</div>
                             <div className="card-trend trend-up">
                                 <i className="fas fa-arrow-up"></i>
                                 <span>67% availability rate</span>
@@ -1147,7 +957,7 @@
                                     <i className="fas fa-users"></i>
                                 </div>
                             </div>
-                            <div className="card-value">{LibraryDatabase.stats.members.toLocaleString()}</div>
+                            <div className="card-value">{libraryData.stats.members.toLocaleString()}</div>
                             <div className="card-trend trend-up">
                                 <i className="fas fa-arrow-up"></i>
                                 <span>8% from last month</span>
@@ -1161,7 +971,7 @@
                                     <i className="fas fa-chart-line"></i>
                                 </div>
                             </div>
-                            <div className="card-value">{LibraryDatabase.stats.monthlyVisits.toLocaleString()}</div>
+                            <div className="card-value">{libraryData.stats.monthlyVisits.toLocaleString()}</div>
                             <div className="card-trend trend-up">
                                 <i className="fas fa-arrow-up"></i>
                                 <span>15% from last month</span>
@@ -1173,7 +983,12 @@
                     <div className="search-container">
                         <h2>Recent Activity</h2>
                         <div style={{ marginTop: '20px' }}>
-                            {recentActivity.map(activity => (
+                            {[
+                                { id: 1, user: "John Doe", action: "checked out", book: "The Great Gatsby", time: "2 hours ago" },
+                                { id: 2, user: "Jane Smith", action: "returned", book: "1984", time: "4 hours ago" },
+                                { id: 3, user: "Bob Johnson", action: "reserved", book: "The Hobbit", time: "1 day ago" },
+                                { id: 4, user: "Alice Brown", action: "checked out", book: "Pride and Prejudice", time: "2 days ago" }
+                            ].map(activity => (
                                 <div key={activity.id} style={{
                                     display: 'flex',
                                     alignItems: 'center',
@@ -1207,19 +1022,19 @@
                     </div>
                 </div>
             );
-        };
+        }
 
         // Search Component
-        const SearchComponent = () => {
-            const [query, setQuery] = useState('');
-            const [results, setResults] = useState([]);
-            const [filters, setFilters] = useState({});
-            const [searchTime, setSearchTime] = useState(LibraryDatabase.stats.avgSearchTime);
-            const [isSearching, setIsSearching] = useState(false);
+        function SearchComponent() {
+            const [query, setQuery] = React.useState('');
+            const [results, setResults] = React.useState(libraryData.books);
+            const [filters, setFilters] = React.useState({});
+            const [searchTime, setSearchTime] = React.useState(libraryData.stats.avgSearchTime);
+            const [isSearching, setIsSearching] = React.useState(false);
 
-            const handleSearch = useCallback(() => {
+            const handleSearch = () => {
                 if (!query.trim() && Object.keys(filters).length === 0) {
-                    setResults(LibraryDatabase.books);
+                    setResults(libraryData.books);
                     return;
                 }
 
@@ -1228,25 +1043,84 @@
 
                 // Simulate search with delay
                 setTimeout(() => {
-                    const searchResults = searchBooks(query, filters);
+                    const queryLower = query.toLowerCase();
+                    const searchResults = libraryData.books.filter(book => {
+                        // Text search
+                        const matchesQuery = !query || 
+                            book.title.toLowerCase().includes(queryLower) ||
+                            book.author.toLowerCase().includes(queryLower) ||
+                            book.category.toLowerCase().includes(queryLower);
+                        
+                        // Filter matching
+                        const matchesCategory = !filters.category || book.category === filters.category;
+                        const matchesStatus = !filters.status || book.status === filters.status;
+                        
+                        return matchesQuery && matchesCategory && matchesStatus;
+                    });
+                    
                     const endTime = performance.now();
                     
                     setSearchTime(((endTime - startTime) / 1000).toFixed(2));
                     setResults(searchResults);
                     setIsSearching(false);
                 }, 300);
-            }, [query, filters]);
-
-            const handleFilterChange = (filterType, value) => {
-                setFilters(prev => ({
-                    ...prev,
-                    [filterType]: value === 'all' ? null : value
-                }));
             };
 
-            useEffect(() => {
+            const handleFilterChange = (filterType, value) => {
+                const newFilters = { ...filters };
+                if (value === 'all') {
+                    delete newFilters[filterType];
+                } else {
+                    newFilters[filterType] = value;
+                }
+                setFilters(newFilters);
+            };
+
+            React.useEffect(() => {
                 handleSearch();
             }, [filters]);
+
+            const BookCard = ({ book }) => {
+                const firstLetter = book.title.charAt(0);
+                
+                return (
+                    <div className="book-card fade-in-up">
+                        <div className="book-cover" style={{ background: book.coverColor }}>
+                            <span>{firstLetter}</span>
+                        </div>
+                        <div className="book-info">
+                            <h3 className="book-title">{book.title}</h3>
+                            <div className="book-author">{book.author} • {book.year}</div>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
+                                <span className="book-category">{book.category}</span>
+                                <div className={`book-status status-${book.status === 'available' ? 'available' : 'checked-out'}`}>
+                                    {book.status === 'available' ? 'Available' : 'Checked Out'}
+                                </div>
+                            </div>
+                            <div className="book-meta">
+                                <div>
+                                    <div style={{ fontSize: '0.85rem', color: '#6c757d' }}>ISBN: {book.isbn}</div>
+                                    <div style={{ fontSize: '0.85rem', color: '#6c757d', marginTop: '5px' }}>
+                                        <i className="fas fa-star" style={{ color: '#FFD700' }}></i> {book.rating} • {book.pages} pages
+                                    </div>
+                                </div>
+                                <button style={{
+                                    padding: '8px 15px',
+                                    background: 'linear-gradient(135deg, #4361ee, #7209b7)',
+                                    color: 'white',
+                                    border: 'none',
+                                    borderRadius: '20px',
+                                    cursor: 'pointer',
+                                    fontSize: '0.85rem',
+                                    fontWeight: '600'
+                                }}>
+                                    {book.status === 'available' ? 'Borrow' : 'Reserve'}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                );
+            };
 
             return (
                 <div className="search-container fade-in-up">
@@ -1276,7 +1150,7 @@
                     
                     <div className="filter-options">
                         <button 
-                            className={`filter-btn ${filters.category === undefined ? 'active' : ''}`}
+                            className={`filter-btn ${!filters.category ? 'active' : ''}`}
                             onClick={() => handleFilterChange('category', 'all')}
                         >
                             All Categories
@@ -1315,13 +1189,19 @@
                     </div>
                 </div>
             );
-        };
+        }
 
         // Performance Chart Component
-        const PerformanceChart = () => {
-            const [hoveredIndex, setHoveredIndex] = useState(null);
+        function PerformanceChart() {
+            const [hoveredIndex, setHoveredIndex] = React.useState(null);
             
-            const maxValue = Math.max(...LibraryDatabase.performanceData.oldSystem);
+            const performanceData = {
+                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                oldSystem: [1.2, 1.18, 1.22, 1.25, 1.19, 1.21, 1.23, 1.24, 1.2, 1.22, 1.21, 1.23],
+                newSystem: [1.2, 1.1, 0.95, 0.85, 0.78, 0.74, 0.72, 0.71, 0.7, 0.71, 0.72, 0.7]
+            };
+            
+            const maxValue = Math.max(...performanceData.oldSystem);
             const chartHeight = 300;
             
             return (
@@ -1330,9 +1210,9 @@
                     <p>Visual representation of the 40% improvement in resource retrieval efficiency</p>
                     
                     <div className="chart-container">
-                        {LibraryDatabase.performanceData.labels.map((label, index) => {
-                            const oldHeight = (LibraryDatabase.performanceData.oldSystem[index] / maxValue) * chartHeight;
-                            const newHeight = (LibraryDatabase.performanceData.newSystem[index] / maxValue) * chartHeight;
+                        {performanceData.labels.map((label, index) => {
+                            const oldHeight = (performanceData.oldSystem[index] / maxValue) * chartHeight;
+                            const newHeight = (performanceData.newSystem[index] / maxValue) * chartHeight;
                             const leftPosition = (index * 70) + 50;
                             
                             return (
@@ -1360,7 +1240,7 @@
                                                 fontSize: '0.8rem',
                                                 whiteSpace: 'nowrap'
                                             }}>
-                                                Old: {LibraryDatabase.performanceData.oldSystem[index]}s
+                                                Old: {performanceData.oldSystem[index]}s
                                             </div>
                                         )}
                                     </div>
@@ -1387,7 +1267,7 @@
                                                 fontSize: '0.8rem',
                                                 whiteSpace: 'nowrap'
                                             }}>
-                                                New: {LibraryDatabase.performanceData.newSystem[index]}s
+                                                New: {performanceData.newSystem[index]}s
                                             </div>
                                         )}
                                     </div>
@@ -1409,10 +1289,10 @@
                     </div>
                 </div>
             );
-        };
+        }
 
         // Team Component
-        const TeamComponent = () => {
+        function TeamComponent() {
             return (
                 <div>
                     <div className="search-container fade-in-up">
@@ -1420,7 +1300,7 @@
                         <p>The team responsible for the 40% efficiency improvement in the library database system</p>
                         
                         <div className="team-grid" style={{ marginTop: '30px' }}>
-                            {LibraryDatabase.teamMembers.map(member => (
+                            {libraryData.teamMembers.map(member => (
                                 <div key={member.id} className="team-member fade-in-up">
                                     <div className="member-avatar">{member.initials}</div>
                                     <h3 style={{ marginBottom: '10px' }}>{member.name}</h3>
@@ -1493,250 +1373,30 @@
                     </div>
                 </div>
             );
-        };
-
-        // Analytics Component
-        const AnalyticsComponent = () => {
-            return (
-                <div>
-                    <div className="efficiency-metric" style={{ background: 'linear-gradient(135deg, #10b981, #059669)' }}>
-                        <div className="metric-content">
-                            <h2>System Analytics Overview</h2>
-                            <div className="metric-value">28500</div>
-                            <div className="metric-detail">
-                                <div className="metric-detail-item">
-                                    <div className="metric-detail-value">99.8%</div>
-                                    <div className="metric-detail-label">System Uptime</div>
-                                </div>
-                                <div className="metric-detail-item">
-                                    <div className="metric-detail-value">{LibraryDatabase.stats.storageSaved}</div>
-                                    <div className="metric-detail-label">Storage Saved</div>
-                                </div>
-                                <div className="metric-detail-item">
-                                    <div className="metric-detail-value">2.1M</div>
-                                    <div className="metric-detail-label">Monthly Queries</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div style={{ fontSize: '5rem', opacity: 0.2 }}>
-                            <i className="fas fa-chart-bar"></i>
-                        </div>
-                    </div>
-                    
-                    <div className="dashboard-cards">
-                        <div className="card">
-                            <div className="card-header">
-                                <h3>Peak Usage Hours</h3>
-                                <div className="card-icon" style={{ background: 'linear-gradient(135deg, #f59e0b, #d97706)' }}>
-                                    <i className="fas fa-clock"></i>
-                                </div>
-                            </div>
-                            <div className="card-value">2 PM - 5 PM</div>
-                            <div style={{ marginTop: '10px', color: '#6c757d' }}>
-                                35% of daily queries during peak hours
-                            </div>
-                        </div>
-                        
-                        <div className="card">
-                            <div className="card-header">
-                                <h3>Most Popular Category</h3>
-                                <div className="card-icon" style={{ background: 'linear-gradient(135deg, #8b5cf6, #7c3aed)' }}>
-                                    <i className="fas fa-fire"></i>
-                                </div>
-                            </div>
-                            <div className="card-value">Fiction</div>
-                            <div style={{ marginTop: '10px', color: '#6c757d' }}>
-                                42% of all checkouts
-                            </div>
-                        </div>
-                        
-                        <div className="card">
-                            <div className="card-header">
-                                <h3>Average Session</h3>
-                                <div className="card-icon" style={{ background: 'linear-gradient(135deg, #ec4899, #db2777)' }}>
-                                    <i className="fas fa-user-clock"></i>
-                                </div>
-                            </div>
-                            <div className="card-value">8.5 min</div>
-                            <div style={{ marginTop: '10px', color: '#6c757d' }}>
-                                Increased by 22% after optimization
-                            </div>
-                        </div>
-                        
-                        <div className="card">
-                            <div className="card-header">
-                                <h3>Mobile Usage</h3>
-                                <div className="card-icon" style={{ background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)' }}>
-                                    <i className="fas fa-mobile-alt"></i>
-                                </div>
-                            </div>
-                            <div className="card-value">68%</div>
-                            <div style={{ marginTop: '10px', color: '#6c757d' }}>
-                                Of all database access
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <PerformanceChart />
-                </div>
-            );
-        };
-
-        // Settings Component
-        const SettingsComponent = () => {
-            return (
-                <div className="search-container fade-in-up">
-                    <h2>System Settings</h2>
-                    
-                    <div style={{ marginTop: '30px' }}>
-                        <h3 style={{ marginBottom: '20px' }}>Performance Configuration</h3>
-                        
-                        <div style={{ display: 'grid', gap: '20px' }}>
-                            {[
-                                { label: "Query Cache Size", value: "2GB", desc: "Memory allocated for query caching" },
-                                { label: "Index Optimization", value: "Enabled", desc: "Automatic index tuning for faster queries" },
-                                { label: "Search Algorithm", value: "Hybrid", desc: "Combines full-text and vector search" },
-                                { label: "Backup Schedule", value: "Daily", desc: "Automatic database backups" },
-                                { label: "API Rate Limiting", value: "1000 req/min", desc: "Maximum requests per minute" }
-                            ].map((setting, index) => (
-                                <div key={index} style={{
-                                    display: 'flex',
-                                    justifyContent: 'space-between',
-                                    alignItems: 'center',
-                                    padding: '20px',
-                                    background: 'rgba(67, 97, 238, 0.05)',
-                                    borderRadius: '12px'
-                                }}>
-                                    <div>
-                                        <div style={{ fontWeight: '600', marginBottom: '5px' }}>{setting.label}</div>
-                                        <div style={{ fontSize: '0.9rem', color: '#6c757d' }}>{setting.desc}</div>
-                                    </div>
-                                    <div>
-                                        <span style={{ 
-                                            padding: '8px 16px', 
-                                            background: 'rgba(67, 97, 238, 0.1)', 
-                                            borderRadius: '20px',
-                                            fontWeight: '600',
-                                            color: '#4361ee'
-                                        }}>
-                                            {setting.value}
-                                        </span>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            );
-        };
-
-        // Catalog Management Component
-        const CatalogComponent = () => {
-            return (
-                <div>
-                    <div className="search-container fade-in-up">
-                        <h2>Catalog Management</h2>
-                        <p>Manage library inventory and book metadata</p>
-                        
-                        <div style={{ display: 'flex', gap: '15px', marginTop: '25px' }}>
-                            <button style={{
-                                padding: '15px 25px',
-                                background: 'linear-gradient(135deg, #4361ee, #3a56d4)',
-                                color: 'white',
-                                border: 'none',
-                                borderRadius: '12px',
-                                cursor: 'pointer',
-                                fontWeight: '600',
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '10px'
-                            }}>
-                                <i className="fas fa-plus"></i> Add New Book
-                            </button>
-                            <button style={{
-                                padding: '15px 25px',
-                                background: 'rgba(67, 97, 238, 0.1)',
-                                color: '#4361ee',
-                                border: 'none',
-                                borderRadius: '12px',
-                                cursor: 'pointer',
-                                fontWeight: '600',
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '10px'
-                            }}>
-                                <i className="fas fa-upload"></i> Bulk Import
-                            </button>
-                            <button style={{
-                                padding: '15px 25px',
-                                background: 'rgba(67, 97, 238, 0.1)',
-                                color: '#4361ee',
-                                border: 'none',
-                                borderRadius: '12px',
-                                cursor: 'pointer',
-                                fontWeight: '600',
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '10px'
-                            }}>
-                                <i className="fas fa-download"></i> Export Catalog
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <SearchComponent />
-                </div>
-            );
-        };
+        }
 
         // Main App Component
-        const App = () => {
-            const [activeTab, setActiveTab] = useState('dashboard');
-            const [sidebarOpen, setSidebarOpen] = useState(false);
+        function App() {
+            const [activeTab, setActiveTab] = React.useState('dashboard');
+            const [sidebarOpen, setSidebarOpen] = React.useState(false);
+
+            React.useEffect(() => {
+                createParticles();
+            }, []);
 
             const tabComponents = {
                 dashboard: <Dashboard />,
                 search: <SearchComponent />,
-                analytics: <AnalyticsComponent />,
-                catalog: <CatalogComponent />,
                 performance: <PerformanceChart />,
-                team: <TeamComponent />,
-                settings: <SettingsComponent />
+                team: <TeamComponent />
             };
 
             const pageTitles = {
                 dashboard: "Library Dashboard",
                 search: "Advanced Book Search",
-                analytics: "System Analytics",
-                catalog: "Catalog Management",
                 performance: "Performance Metrics",
-                team: "Project Team",
-                settings: "System Settings"
+                team: "Project Team"
             };
-
-            useEffect(() => {
-                createParticles();
-                
-                // Initialize animations
-                const animateElements = () => {
-                    const elements = document.querySelectorAll('.fade-in-up');
-                    elements.forEach(el => {
-                        const rect = el.getBoundingClientRect();
-                        if (rect.top < window.innerHeight - 100) {
-                            el.style.animationPlayState = 'running';
-                        }
-                    });
-                };
-
-                window.addEventListener('scroll', animateElements);
-                animateElements();
-
-                return () => window.removeEventListener('scroll', animateElements);
-            }, []);
-
-            useEffect(() => {
-                document.getElementById('pageTitle').textContent = pageTitles[activeTab] || "Library Database System";
-            }, [activeTab]);
 
             const handleTabChange = (tab) => {
                 setActiveTab(tab);
@@ -1746,7 +1406,7 @@
             };
 
             return (
-                <>
+                <div className="app-container">
                     <button 
                         className="mobile-menu-toggle" 
                         id="mobileMenuToggle"
@@ -1768,47 +1428,40 @@
                         
                         <div className="nav-menu">
                             {Object.keys(pageTitles).map(tab => (
-                                <a 
+                                <div 
                                     key={tab}
-                                    href="#" 
                                     className={`nav-item ${activeTab === tab ? 'active' : ''}`}
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        handleTabChange(tab);
-                                    }}
+                                    onClick={() => handleTabChange(tab)}
                                 >
                                     <i className={`fas fa-${
                                         tab === 'dashboard' ? 'tachometer-alt' :
                                         tab === 'search' ? 'search' :
-                                        tab === 'analytics' ? 'chart-line' :
-                                        tab === 'catalog' ? 'book-open' :
                                         tab === 'performance' ? 'rocket' :
-                                        tab === 'team' ? 'users' :
-                                        'cog'
+                                        'users'
                                     }`}></i>
                                     <span>{pageTitles[tab]}</span>
-                                </a>
+                                </div>
                             ))}
                         </div>
                         
                         <div className="portfolio-section">
                             <h3>My Portfolio</h3>
-                            <a href="#" className="portfolio-link">
+                            <div className="portfolio-link">
                                 <i className="fas fa-user"></i>
                                 <span>About Me</span>
-                            </a>
-                            <a href="#" className="portfolio-link">
+                            </div>
+                            <div className="portfolio-link">
                                 <i className="fas fa-briefcase"></i>
                                 <span>Projects</span>
-                            </a>
-                            <a href="#" className="portfolio-link">
+                            </div>
+                            <div className="portfolio-link">
                                 <i className="fas fa-envelope"></i>
                                 <span>Contact</span>
-                            </a>
-                            <a href="#" className="portfolio-link">
+                            </div>
+                            <div className="portfolio-link">
                                 <i className="fas fa-file-download"></i>
                                 <span>Resume</span>
-                            </a>
+                            </div>
                         </div>
                         
                         <div className="portfolio-section">
@@ -1850,11 +1503,12 @@
                             </p>
                         </footer>
                     </main>
-                </>
+                </div>
             );
-        };
+        }
 
-        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+        // Render the app
+        ReactDOM.render(<App />, document.getElementById('root'));
     </script>
 </body>
 </html>
