@@ -253,4 +253,428 @@ function SearchComponent() {
         const firstLetter = book.title.charAt(0);
         
         return (
-           
+            <div className="book-card fade-in-up">
+                <div className="book-cover" style={{ background: book.coverColor }}>
+                    <span>{firstLetter}</span>
+                </div>
+                <div className="book-info">
+                    <h3 className="book-title">{book.title}</h3>
+                    <div className="book-author">{book.author} • {book.year}</div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
+                        <span className="book-category">{book.category}</span>
+                        <div className={`book-status status-${book.status === 'available' ? 'available' : 'checked-out'}`}>
+                            {book.status === 'available' ? 'Available' : 'Checked Out'}
+                        </div>
+                    </div>
+                    <div className="book-meta">
+                        <div>
+                            <div style={{ fontSize: '0.85rem', color: '#6c757d' }}>ISBN: {book.isbn}</div>
+                            <div style={{ fontSize: '0.85rem', color: '#6c757d', marginTop: '5px' }}>
+                                <i className="fas fa-star" style={{ color: '#FFD700' }}></i> {book.rating} • {book.pages} pages
+                            </div>
+                        </div>
+                        <button style={{
+                            padding: '8px 15px',
+                            background: 'linear-gradient(135deg, #4361ee, #7209b7)',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '20px',
+                            cursor: 'pointer',
+                            fontSize: '0.85rem',
+                            fontWeight: '600'
+                        }}>
+                            {book.status === 'available' ? 'Borrow' : 'Reserve'}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
+    return (
+        <div className="search-container fade-in-up">
+            <div className="search-header">
+                <h2>Advanced Book Search</h2>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <div style={{ fontSize: '0.9rem', color: '#6c757d' }}>
+                        Search time: <strong>{searchTime}s</strong> (40% faster)
+                    </div>
+                </div>
+            </div>
+            
+            <div className="search-box">
+                <input
+                    type="text"
+                    className="search-input"
+                    placeholder="Search by title, author, category, or ISBN..."
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+                />
+                <button className="search-btn" onClick={handleSearch} disabled={isSearching}>
+                    <i className="fas fa-search"></i>
+                    {isSearching ? 'Searching...' : 'Search'}
+                </button>
+            </div>
+            
+            <div className="filter-options">
+                <button 
+                    className={`filter-btn ${!filters.category ? 'active' : ''}`}
+                    onClick={() => handleFilterChange('category', 'all')}
+                >
+                    All Categories
+                </button>
+                <button 
+                    className={`filter-btn ${filters.category === 'Fiction' ? 'active' : ''}`}
+                    onClick={() => handleFilterChange('category', 'Fiction')}
+                >
+                    Fiction
+                </button>
+                <button 
+                    className={`filter-btn ${filters.category === 'Fantasy' ? 'active' : ''}`}
+                    onClick={() => handleFilterChange('category', 'Fantasy')}
+                >
+                    Fantasy
+                </button>
+                <button 
+                    className={`filter-btn ${filters.status === 'available' ? 'active' : ''}`}
+                    onClick={() => handleFilterChange('status', 'available')}
+                >
+                    Available Only
+                </button>
+            </div>
+            
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <h3>Search Results ({results.length} books)</h3>
+                <div style={{ fontSize: '0.9rem', color: '#6c757d' }}>
+                    Showing optimized results (40% faster retrieval)
+                </div>
+            </div>
+            
+            <div className="results-container">
+                {results.map(book => (
+                    <BookCard key={book.id} book={book} />
+                ))}
+            </div>
+        </div>
+    );
+}
+
+// Performance Chart Component
+function PerformanceChart() {
+    const [hoveredIndex, setHoveredIndex] = React.useState(null);
+    
+    const performanceData = {
+        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        oldSystem: [1.2, 1.18, 1.22, 1.25, 1.19, 1.21, 1.23, 1.24, 1.2, 1.22, 1.21, 1.23],
+        newSystem: [1.2, 1.1, 0.95, 0.85, 0.78, 0.74, 0.72, 0.71, 0.7, 0.71, 0.72, 0.7]
+    };
+    
+    const maxValue = Math.max(...performanceData.oldSystem);
+    const chartHeight = 300;
+    
+    return (
+        <div className="performance-chart fade-in-up">
+            <h2>Performance Improvement Over Time</h2>
+            <p>Visual representation of the 40% improvement in resource retrieval efficiency</p>
+            
+            <div className="chart-container">
+                {performanceData.labels.map((label, index) => {
+                    const oldHeight = (performanceData.oldSystem[index] / maxValue) * chartHeight;
+                    const newHeight = (performanceData.newSystem[index] / maxValue) * chartHeight;
+                    const leftPosition = (index * 70) + 50;
+                    
+                    return (
+                        <div key={index} style={{ position: 'absolute', left: `${leftPosition}px`, bottom: '0' }}>
+                            <div 
+                                className="chart-bar" 
+                                style={{ 
+                                    height: `${oldHeight}px`,
+                                    background: 'linear-gradient(180deg, #6c757d, #495057)',
+                                    left: '-25px'
+                                }}
+                                onMouseEnter={() => setHoveredIndex(index)}
+                                onMouseLeave={() => setHoveredIndex(null)}
+                            >
+                                {hoveredIndex === index && (
+                                    <div style={{
+                                        position: 'absolute',
+                                        top: '-40px',
+                                        left: '50%',
+                                        transform: 'translateX(-50%)',
+                                        background: '#212529',
+                                        color: 'white',
+                                        padding: '5px 10px',
+                                        borderRadius: '5px',
+                                        fontSize: '0.8rem',
+                                        whiteSpace: 'nowrap'
+                                    }}>
+                                        Old: {performanceData.oldSystem[index]}s
+                                    </div>
+                                )}
+                            </div>
+                            <div 
+                                className="chart-bar" 
+                                style={{ 
+                                    height: `${newHeight}px`,
+                                    background: 'linear-gradient(180deg, #4361ee, #3a56d4)',
+                                    left: '25px'
+                                }}
+                                onMouseEnter={() => setHoveredIndex(index)}
+                                onMouseLeave={() => setHoveredIndex(null)}
+                            >
+                                {hoveredIndex === index && (
+                                    <div style={{
+                                        position: 'absolute',
+                                        top: '-40px',
+                                        left: '50%',
+                                        transform: 'translateX(-50%)',
+                                        background: '#4361ee',
+                                        color: 'white',
+                                        padding: '5px 10px',
+                                        borderRadius: '5px',
+                                        fontSize: '0.8rem',
+                                        whiteSpace: 'nowrap'
+                                    }}>
+                                        New: {performanceData.newSystem[index]}s
+                                    </div>
+                                )}
+                            </div>
+                            <div className="chart-label">{label}</div>
+                        </div>
+                    );
+                })}
+            </div>
+            
+            <div style={{ display: 'flex', gap: '30px', marginTop: '60px', alignItems: 'center' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <div style={{ width: '20px', height: '20px', background: '#4361ee', borderRadius: '4px' }}></div>
+                    <span>Optimized System</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <div style={{ width: '20px', height: '20px', background: '#6c757d', borderRadius: '4px' }}></div>
+                    <span>Previous System</span>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// Team Component
+function TeamComponent() {
+    return (
+        <div>
+            <div className="search-container fade-in-up">
+                <h2>Project Team</h2>
+                <p>The team responsible for the 40% efficiency improvement in the library database system</p>
+                
+                <div className="team-grid" style={{ marginTop: '30px' }}>
+                    {libraryData.teamMembers.map(member => (
+                        <div key={member.id} className="team-member fade-in-up">
+                            <div className="member-avatar">{member.initials}</div>
+                            <h3 style={{ marginBottom: '10px' }}>{member.name}</h3>
+                            <div className="member-role">{member.role}</div>
+                            <div style={{ marginTop: '15px', color: '#6c757d' }}>
+                                <div style={{ marginBottom: '5px' }}>
+                                    <i className="fas fa-star" style={{ color: '#FFD700', marginRight: '5px' }}></i>
+                                    Expertise: {member.expertise}
+                                </div>
+                                <div>
+                                    <i className="fas fa-project-diagram" style={{ marginRight: '5px' }}></i>
+                                    Projects: {member.projects}
+                                </div>
+                            </div>
+                            <button style={{
+                                marginTop: '20px',
+                                padding: '10px 20px',
+                                background: 'rgba(67, 97, 238, 0.1)',
+                                color: '#4361ee',
+                                border: 'none',
+                                borderRadius: '20px',
+                                cursor: 'pointer',
+                                fontWeight: '600',
+                                width: '100%'
+                            }}>
+                                View Profile
+                            </button>
+                        </div>
+                    ))}
+                </div>
+            </div>
+            
+            <div className="performance-chart" style={{ marginTop: '40px' }}>
+                <h2>Project Timeline & Achievements</h2>
+                <div style={{ marginTop: '20px' }}>
+                    <div style={{ position: 'relative', paddingLeft: '30px' }}>
+                        <div style={{
+                            position: 'absolute',
+                            left: '0',
+                            top: '0',
+                            bottom: '0',
+                            width: '3px',
+                            background: 'linear-gradient(180deg, #4361ee, #7209b7)'
+                        }}></div>
+                        
+                        {[
+                            { phase: "Phase 1: Analysis & Planning", duration: "Weeks 1-2", desc: "Identified bottlenecks and established optimization goals" },
+                            { phase: "Phase 2: Database Restructuring", duration: "Weeks 3-5", desc: "Redesigned schema and implemented new indexing strategies" },
+                            { phase: "Phase 3: System Implementation", duration: "Weeks 6-8", desc: "Deployed optimized database with frontend integration" },
+                            { phase: "Phase 4: Testing & Validation", duration: "Weeks 9-10", desc: "Rigorous testing confirmed 40% efficiency improvement" }
+                        ].map((phase, index) => (
+                            <div key={index} style={{ marginBottom: '30px', position: 'relative' }}>
+                                <div style={{
+                                    position: 'absolute',
+                                    left: '-36px',
+                                    top: '0',
+                                    width: '15px',
+                                    height: '15px',
+                                    borderRadius: '50%',
+                                    background: 'linear-gradient(135deg, #4361ee, #7209b7)',
+                                    border: '3px solid white'
+                                }}></div>
+                                <h3 style={{ marginBottom: '5px' }}>{phase.phase}</h3>
+                                <div style={{ color: '#4361ee', fontWeight: '600', marginBottom: '5px' }}>{phase.duration}</div>
+                                <div style={{ color: '#6c757d' }}>{phase.desc}</div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// Main App Component
+function App() {
+    const [activeTab, setActiveTab] = React.useState('dashboard');
+    const [sidebarOpen, setSidebarOpen] = React.useState(false);
+
+    React.useEffect(() => {
+        createParticles();
+    }, []);
+
+    const tabComponents = {
+        dashboard: <Dashboard />,
+        search: <SearchComponent />,
+        performance: <PerformanceChart />,
+        team: <TeamComponent />
+    };
+
+    const pageTitles = {
+        dashboard: "Library Dashboard",
+        search: "Advanced Book Search",
+        performance: "Performance Metrics",
+        team: "Project Team"
+    };
+
+    const handleTabChange = (tab) => {
+        setActiveTab(tab);
+        if (window.innerWidth <= 1200) {
+            setSidebarOpen(false);
+        }
+    };
+
+    return (
+        <div className="app-container">
+            <button 
+                className="mobile-menu-toggle" 
+                id="mobileMenuToggle"
+                onClick={() => setSidebarOpen(!sidebarOpen)}
+            >
+                <i className={`fas fa-${sidebarOpen ? 'times' : 'bars'}`}></i>
+            </button>
+            
+            <nav className={`sidebar ${sidebarOpen ? 'active' : ''}`} id="sidebar">
+                <div className="sidebar-header">
+                    <div className="logo">
+                        <i className="fas fa-book"></i>
+                    </div>
+                    <div className="logo-text">
+                        <h2>LibraBase Pro</h2>
+                        <span>Database System</span>
+                    </div>
+                </div>
+                
+                <div className="nav-menu">
+                    {Object.keys(pageTitles).map(tab => (
+                        <div 
+                            key={tab}
+                            className={`nav-item ${activeTab === tab ? 'active' : ''}`}
+                            onClick={() => handleTabChange(tab)}
+                        >
+                            <i className={`fas fa-${
+                                tab === 'dashboard' ? 'tachometer-alt' :
+                                tab === 'search' ? 'search' :
+                                tab === 'performance' ? 'rocket' :
+                                'users'
+                            }`}></i>
+                            <span>{pageTitles[tab]}</span>
+                        </div>
+                    ))}
+                </div>
+                
+                <div className="portfolio-section">
+                    <h3>My Portfolio</h3>
+                    <div className="portfolio-link">
+                        <i className="fas fa-user"></i>
+                        <span>About Me</span>
+                    </div>
+                    <div className="portfolio-link">
+                        <i className="fas fa-briefcase"></i>
+                        <span>Projects</span>
+                    </div>
+                    <div className="portfolio-link">
+                        <i className="fas fa-envelope"></i>
+                        <span>Contact</span>
+                    </div>
+                    <div className="portfolio-link">
+                        <i className="fas fa-file-download"></i>
+                        <span>Resume</span>
+                    </div>
+                </div>
+                
+                <div className="portfolio-section">
+                    <h3>System Status</h3>
+                    <div className="performance-stats">
+                        <div className="stat-item">
+                            <div className="stat-value">99.8%</div>
+                            <div className="stat-label">Uptime</div>
+                        </div>
+                        <div className="stat-item">
+                            <div className="stat-value">40%</div>
+                            <div className="stat-label">Faster</div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            
+            <main className="main-content" id="mainContent">
+                <header className="header">
+                    <h1 id="pageTitle">{pageTitles[activeTab]}</h1>
+                    <div className="header-controls">
+                        <div className="user-profile">
+                            <div className="user-avatar">AJ</div>
+                            <div>
+                                <div style={{ fontWeight: '600' }}>Alex Johnson</div>
+                                <div style={{ fontSize: '0.85rem', opacity: 0.7 }}>Project Lead</div>
+                            </div>
+                            <i className="fas fa-chevron-down" style={{ marginLeft: '10px' }}></i>
+                        </div>
+                    </div>
+                </header>
+                
+                {tabComponents[activeTab]}
+                
+                <footer className="footer">
+                    <p>Advanced Library Database System v4.0 • Optimized for Performance • 40% Faster Resource Retrieval</p>
+                    <p style={{ marginTop: '10px', fontSize: '0.9rem' }}>
+                        This system demonstrates database optimization that improved efficiency by 40%
+                    </p>
+                </footer>
+            </main>
+        </div>
+    );
+}
+
+// Render the app
+ReactDOM.render(<App />, document.getElementById('root'));
