@@ -7,24 +7,23 @@
     <meta name="keywords" content="Software Engineer, Cybersecurity, Full-Stack Developer, IoT, Rwanda">
     <meta name="author" content="Sano Gervais">
     
-    <!-- Open Graph / Social Media Meta Tags (preserved) -->
+    <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:title" content="Sano Gervais - IT Portfolio">
     <meta property="og:description" content="Full-Stack Developer & Cybersecurity Specialist based in Rwanda">
     <meta property="og:image" content="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
     <meta property="og:url" content="https://sanogervais.com">
-    <!-- Favicon (preserved) -->
+    <!-- Favicon -->
     <link rel="icon" href="pngfind.com-circle-icon-png-1345566.png" type="image/x-icon">
     
-    <!-- Font Awesome 6 (free) -->
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-    <!-- Google Fonts (preserved) -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
     
     <title>Sano Gervais | Full-Stack Developer & Cybersecurity Specialist</title>
     
     <style>
-        /* ===== ADVANCED CSS WITH CUSTOM PROPERTIES, KEYFRAMES, COMPLEX GRID ===== */
         :root {
             --primary: #0078d4;
             --primary-dark: #106ebe;
@@ -72,7 +71,7 @@
             padding: 0 20px;
         }
 
-        /* ===== PRELOADER ADVANCED ===== */
+        /* ===== PRELOADER ===== */
         .preloader {
             position: fixed;
             top: 0;
@@ -199,7 +198,7 @@
             transition: 0.3s;
         }
 
-        /* ===== HERO SECTION (Microsoft bg preserved) ===== */
+        /* ===== HERO SECTION WITH VIDEO BACKGROUND ===== */
         .hero-section {
             min-height: 100vh;
             display: flex;
@@ -207,31 +206,56 @@
             position: relative;
             overflow: hidden;
             padding-top: 90px;
+            background: #0a0a0a; /* fallback dark background */
         }
+
+        /* Video container */
+        .hero-video-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .hero-video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            opacity: 0.6; /* subtle opacity for better text readability */
+            filter: brightness(0.65) saturate(1.2);
+            transition: opacity 0.5s ease;
+        }
+
+        /* Gradient overlay to enhance readability and add style */
         .hero-section::before {
             content: '';
             position: absolute;
             inset: 0;
-            background-image: url('https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/1062064-Hero-Background?resMode=sharp2&op_usm=1.5,0.65,15,0&wid=2000&hei=725&qlt=100&fit=constrain');
-            background-size: cover;
-            background-position: center;
-            filter: brightness(0.7);
-            z-index: -2;
+            background: radial-gradient(circle at 20% 30%, rgba(0,120,212,0.25), transparent 60%),
+                        linear-gradient(135deg, rgba(0,0,0,0.45) 0%, rgba(0,120,212,0.3) 50%, rgba(16,124,16,0.4) 100%);
+            z-index: 1;
+            pointer-events: none;
         }
+
+        /* remove old ::after background overlay */
         .hero-section::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: var(--gradient-overlay);
-            z-index: -1;
+            display: none;
         }
+
         .hero-content {
+            position: relative;
+            z-index: 3;
             display: grid;
             grid-template-columns: 1fr 1fr;
             align-items: center;
             gap: 3rem;
             color: white;
             padding: 3rem 0;
+            text-shadow: 0 2px 15px rgba(0,0,0,0.3);
         }
         .hero-text { animation: fadeLeft 1s; }
         .hero-title {
@@ -556,6 +580,7 @@
             .hero-content { grid-template-columns: 1fr; text-align: center; }
             .hero-stats { justify-content: center; }
             .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
+            .hero-video-wrapper video { opacity: 0.55; } /* slightly less opacity on mobile for readability */
         }
     </style>
 </head>
@@ -591,8 +616,17 @@
         </div>
     </header>
 
-    <!-- HERO (same photo, words) -->
+    <!-- HERO with BACKGROUND VIDEO (WEBS.mp4) replacing previous background image -->
     <section id="hero" class="hero-section">
+        <!-- Background video with opacity and styling -->
+        <div class="hero-video-wrapper">
+            <video autoplay muted loop playsinline poster="sanoconventioncenter.png">
+                <source src="WEBS.mp4" type="video/mp4">
+                <!-- Fallback text if video not supported -->
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
@@ -612,7 +646,6 @@
                 </div>
                 <div class="hero-image">
                     <div class="image-wrapper">
-                        <!-- original photo -->
                         <img src="sanoconventioncenter.png" alt="Sano Gervais" class="profile-img">
                         <div class="image-badge">
                             <div class="badge-content">
@@ -626,7 +659,7 @@
         </div>
     </section>
 
-    <!-- ABOUT (preserved text & photo, structure advanced) -->
+    <!-- ABOUT -->
     <section id="about" class="section">
         <div class="container">
             <div class="section-header"><h2 class="section-title">About Me</h2><p>Get to know me better</p></div>
@@ -662,7 +695,7 @@
         </div>
     </section>
 
-    <!-- EXPERIENCE (preserved) -->
+    <!-- EXPERIENCE -->
     <section id="experience" class="section bg-light">
         <div class="container">
             <div class="section-header"><h2 class="section-title">Work Experience</h2><p>Professional journey</p></div>
@@ -687,7 +720,7 @@
         </div>
     </section>
 
-    <!-- SKILLS (bars preserved) -->
+    <!-- SKILLS -->
     <section id="skills" class="section">
         <div class="container">
             <div class="section-header"><h2 class="section-title">Technical Skills</h2><p>What I bring</p></div>
@@ -714,7 +747,7 @@
         </div>
     </section>
 
-    <!-- PROJECTS (images preserved) -->
+    <!-- PROJECTS -->
     <section id="projects" class="section bg-light">
         <div class="container">
             <div class="section-header"><h2 class="section-title">Featured Projects</h2><p>Recent work</p></div>
@@ -727,7 +760,7 @@
         </div>
     </section>
 
-    <!-- EDUCATION (preserved) -->
+    <!-- EDUCATION -->
     <section id="education" class="section">
         <div class="container">
             <div class="section-header"><h2 class="section-title">Education</h2><p>Academic background</p></div>
@@ -744,7 +777,7 @@
         </div>
     </section>
 
-    <!-- CONTACT (unchanged fields) -->
+    <!-- CONTACT -->
     <section id="contact" class="section bg-light">
         <div class="container">
             <div class="section-header"><h2 class="section-title">Get In Touch</h2><p>Let's work together</p></div>
@@ -771,7 +804,7 @@
         </div>
     </section>
 
-    <!-- FOOTER (with CV download unchanged) -->
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -790,7 +823,7 @@
 
     <button id="backToTop" class="back-to-top"><i class="fas fa-arrow-up"></i></button>
 
-    <!-- ADVANCED INTERNAL SCRIPT (with Node.js-like simulation + PHP simulation via JS) -->
+    <!-- Advanced Scripts -->
     <script>
         (function(){
             // Preloader
@@ -799,7 +832,7 @@
                 setTimeout(()=>document.getElementById('preloader').style.display='none',600);
             });
 
-            // Theme toggle (advanced)
+            // Theme toggle
             const themeToggle = document.getElementById('themeToggle');
             const icon = document.getElementById('themeIcon');
             const html = document.documentElement;
@@ -821,7 +854,7 @@
             toggleBtn.addEventListener('click', ()=> menu.classList.toggle('active'));
             document.querySelectorAll('.nav-link').forEach(l=> l.addEventListener('click', ()=> menu.classList.remove('active')));
 
-            // Typing (preserved)
+            // Typing effect
             const typed = document.querySelector('.typed-text');
             const cursor = document.querySelector('.cursor');
             const texts = ['Full-Stack Developer', 'Cybersecurity Specialist', 'IoT Solutions Architect', 'Software Engineer'];
@@ -873,8 +906,7 @@
                 });
             });
 
-            // ========== SIMULATED BACKEND (PHP/Node.js) ==========
-            // Contact form : uses fetch to mock API (like Node.js endpoint)
+            // Simulated backend contact form
             document.getElementById('contactForm').addEventListener('submit', async function(e) {
                 e.preventDefault();
                 const name = document.getElementById('contactName').value;
@@ -882,18 +914,14 @@
                 const subject = document.getElementById('contactSubject').value;
                 const message = document.getElementById('contactMessage').value;
 
-                // Simulate sending to a server (Node.js / PHP) via fetch
                 const formData = { name, email, subject, message, time: new Date().toISOString() };
 
-                // In a real environment, you'd POST to /api/contact
-                // Here we mock a successful response with a slight delay
                 const btn = this.querySelector('button[type="submit"]');
                 const originalText = btn.innerHTML;
                 btn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Sending...';
                 btn.disabled = true;
 
                 try {
-                    // Fake API call (simulate Node.js/ PHP processing)
                     await new Promise(resolve => setTimeout(resolve, 1200));
                     console.log('📡 simulated backend (PHP/Node) received:', formData);
                     alert(`Thank you ${name}! (Demo) Your message has been received.`);
@@ -906,7 +934,7 @@
                 }
             });
 
-            // Newsletter subscription simulation (like PHP mail)
+            // Newsletter subscription
             document.getElementById('newsletterForm').addEventListener('submit', async function(e) {
                 e.preventDefault();
                 const email = this.querySelector('input[type="email"]').value;
@@ -919,30 +947,9 @@
                 btn.innerHTML = '<i class="fas fa-paper-plane"></i>';
             });
 
-            // Print btn
+            // Print button
             document.getElementById('printBtn')?.addEventListener('click', ()=> window.print());
-
-            // Simulated Node.js / PHP server-side snippet (just for show, inside JS)
-            // The code below is not executed but demonstrates backend logic inclusion
-            /*
-                // ------ Node.js (Express) endpoint example ------
-                app.post('/api/contact', (req, res) => {
-                    const {name, email, message} = req.body;
-                    // store in DB, send email via nodemailer...
-                    res.json({status: 'ok'});
-                });
-
-                // ------ PHP mail handler ------
-                <?php
-                    if($_POST['contact']) {
-                        mail('sanogervais@gmail.com', $_POST['subject'], $_POST['message']);
-                    }
-                ?>
-            */
-            // end of backend simulation
         })();
     </script>
-
-    <!-- hidden note: all original photos, text, links preserved exactly, structure advanced -->
 </body>
 </html>
