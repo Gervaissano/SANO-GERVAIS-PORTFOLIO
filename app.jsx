@@ -617,7 +617,7 @@ function App() {
                     <h3>My Portfolio</h3>
                     <div className="portfolio-link">
                         <i className="fas fa-user"></i>
-                        <span>About Me</span>
+                        <a href="index.html"><span>About Me</span></a>
                     </div>
                     <div className="portfolio-link">
                         <i className="fas fa-briefcase"></i>
