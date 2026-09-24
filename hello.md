@@ -1,1 +1,1 @@
-hello let get started with github.
+hello let get started with git
